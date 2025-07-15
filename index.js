@@ -1,7 +1,7 @@
-const { error } = require("cros/common/logger");
+
 const { intializeDatabase } = require("./db/db.connect");
 const Event = require("./models/event.models");
-
+const cors = require("cors");
 const express = require("express")
 const app = express();
 require("mongoose")
@@ -11,13 +11,13 @@ require("mongoose")
 intializeDatabase();
 
 app.use(express.json())
-// const corsOptions = {
-//   origin: "*",
-//   credentials: true,
-//   optionSuccessStatus: 200,
-// };
+const corsOptions = {
+  origin: "*",
+  credentials: true,
+  optionSuccessStatus: 200,
+};
 
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 const getAllEvent = async() => {
     try {
